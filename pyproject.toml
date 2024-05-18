@@ -1,0 +1,17 @@
+[tool.poetry]
+name = "flamme-olympique-2024"
+version = "0.1.0"
+description = "The python application for our EPITECH JAM 2024, subject being \"Flamme\""
+authors = ["Yanis Moyon <yanis.moyon@epitech.eu>"]
+license = "GNU General Public License"
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.12"
+
+[tool.poetry.group.dev.dependencies]
+PyAudio = "^0.2.14"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
