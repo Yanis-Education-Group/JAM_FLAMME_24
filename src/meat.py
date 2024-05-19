@@ -2,6 +2,7 @@
 
 import time
 import pygame
+from recup_mic import stream, use_mic, rms, db
 
 def getCurrentDb():
     return 100
@@ -15,6 +16,7 @@ def startGame():
     start = time.time()
     scoreFont = pygame.font.SysFont(None, 24)
     gameOverFont = pygame.font.SysFont(None, 48)
+    stream.start_stream()
     while (time.time() - start < 60) and quit == False:
         screen.fill((0, 0, 0))
         pygame.draw.rect(screen, (125, 125, 125), pygame.Rect(30, 1000, 1860, 30))
@@ -22,7 +24,8 @@ def startGame():
         timeUI = scoreFont.render("Time Left: " + str(int(60 - (time.time() - start))), True, (255, 255, 255))
         screen.blit(scoreUI, (20, 20))
         screen.blit(timeUI, (1800, 20))
-        currentMeat += (getCurrentDb() / 100)
+        if stream.is_active():
+            currentMeat += (use_mic(rms, db) / 100)
         pygame.draw.rect(screen, (0, 255, 0), pygame.Rect(30, 1000, (currentMeat / 100) * 1860, 30))
         if currentMeat >= 100:
             score += 1
