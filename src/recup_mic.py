@@ -17,7 +17,6 @@ def callback(in_data, frame_count, time_info, status):
     rms = audioop.rms(in_data, WIDTH)
     return in_data, pyaudio.paContinue
 
-#init du rec mic
 stream = p.open(format=p.get_format_from_width(WIDTH),
                 input_device_index=DEVICE,
                 channels=1,
@@ -26,21 +25,15 @@ stream = p.open(format=p.get_format_from_width(WIDTH),
                 output=False,
                 stream_callback=callback)
 
-#start du rec mic
-stream.start_stream()
-
-#boucle inf: check ur db
-while stream.is_active():
+def use_mic(rms, db):
     if (rms > 1):
         db = 40 * log10(rms)
     else:
         db = 0
-    print(f"RMS: {rms} DB: {db}") 
-    # refresh every 0.3 seconds 
-    time.sleep(0.1)
+    time.sleep(0.2)
+    return db
 
-#fin du rec mic
-stream.stop_stream()
-stream.close()
-
-p.terminate()
+def close_mic(stream, p):
+    stream.stop_stream()
+    stream.close()
+    p.terminate()
