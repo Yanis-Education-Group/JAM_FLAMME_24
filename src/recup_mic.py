@@ -2,6 +2,7 @@
 
 import pyaudio
 import time
+import pygame
 from math import log10
 import audioop
 
@@ -25,15 +26,14 @@ stream = p.open(format=p.get_format_from_width(WIDTH),
                 output=False,
                 stream_callback=callback)
 
-def use_mic(rms, db):
+def use_mic():
     if (rms > 1):
         db = 40 * log10(rms)
     else:
         db = 0
-    time.sleep(0.2)
     return db
 
-def close_mic(stream, p):
+def close_mic():
     stream.stop_stream()
     stream.close()
     p.terminate()

@@ -2,7 +2,7 @@
 
 import time
 import pygame
-from recup_mic import stream, use_mic, rms, db
+from recup_mic import stream, use_mic, close_mic
 
 def getCurrentDb():
     return 100
@@ -25,7 +25,11 @@ def startGame():
         screen.blit(scoreUI, (20, 20))
         screen.blit(timeUI, (1800, 20))
         if stream.is_active():
-            currentMeat += (use_mic(rms, db) / 100)
+            if (use_mic() >= 130):
+                currentMeat += (use_mic() / 50)
+            elif (use_mic() >= 70):
+                currentMeat += (use_mic() / 100)
+            time.sleep(0.1)
         pygame.draw.rect(screen, (0, 255, 0), pygame.Rect(30, 1000, (currentMeat / 100) * 1860, 30))
         if currentMeat >= 100:
             score += 1
@@ -46,5 +50,6 @@ def startGame():
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_ESCAPE:
                     quit = True
+    close_mic()
     pygame.quit()
     return score
