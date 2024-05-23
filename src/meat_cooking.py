@@ -10,3 +10,7 @@ def change_sprite (sprite, new_image_path, cooked):
     if cooked:
         sprite = pygame.image.load(new_image_path)
     return sprite
+
+def place_meat():
+    sprite, sprite_rec = create_sprite("assets/diff_meat/raw_beef/8730aceb-86a9-4f1e-8f68-c200794d7a06.png", 100, 100)
+    change_sprite(sprite, "assets/diff_meat/cooked_beef/5acf297e-aee1-43ff-ae02-2cda59aca16f.png")
