@@ -3,9 +3,6 @@ import pygame
 from recup_mic import stream, use_mic, close_mic
 from meat_cooking import create_sprite, change_sprite
 
-def getCurrentDb():
-    return 100
-
 def gameLoop(screen: pygame.Surface, start: float, scoreFont: pygame.font.Font, cooking_meat: pygame.Surface, rect_cooking_meat: pygame.Rect):
 
     score = 0
