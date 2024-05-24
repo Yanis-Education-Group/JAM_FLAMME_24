@@ -3,6 +3,7 @@
 import time
 import pygame
 from recup_mic import stream, use_mic, close_mic
+from meat_cooking import create_sprite, change_sprite
 
 def getCurrentDb():
     return 100
@@ -17,6 +18,7 @@ def startGame():
     scoreFont = pygame.font.SysFont(None, 24)
     gameOverFont = pygame.font.SysFont(None, 48)
     stream.start_stream()
+    cooking_meat, rect_cooking_meat = create_sprite("assets/diff_meat/raw_beef/8730aceb-86a9-4f1e-8f68-c200794d7a06.png", 200, 200);
     while (time.time() - start < 60) and quit == False:
         screen.fill((0, 0, 0))
         pygame.draw.rect(screen, (125, 125, 125), pygame.Rect(30, 1000, 1860, 30))
@@ -33,6 +35,11 @@ def startGame():
         pygame.draw.rect(screen, (0, 255, 0), pygame.Rect(30, 1000, (currentMeat / 100) * 1860, 30))
         if currentMeat >= 100:
             score += 1
+            change_sprite(cooking_meat, "assets/diff_meat/cooked_beef/5acf297e-aee1-43ff-ae02-2cda59aca16f.png")
+            while rect_cooking_meat.y <= 0:
+                rect_cooking_meat.y -= 5
+            rect_cooking_meat.y = 200
+            change_sprite(cooking_meat, "assets/diff_meat/raw_beef/8730aceb-86a9-4f1e-8f68-c200794d7a06.png")
             currentMeat = 0
         for event in pygame.event.get():
             if event.type == pygame.KEYDOWN:
