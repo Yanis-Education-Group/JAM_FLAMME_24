@@ -1,6 +1,6 @@
 #! /usr/bin/python3
 
-from meat import startGame
+from main import startGame
 
 if __name__ == "__main__":
     startGame()
