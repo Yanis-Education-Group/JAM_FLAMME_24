@@ -4,7 +4,7 @@ def create_sprite(image_path, x, y):
     sprite = pygame.image.load(image_path)
     sprite_rect = sprite.get_rect()
     sprite_rect.topleft = [x, y]
-    sprite = pygame.transform.scale(sprite, (200, 200))
+    sprite = pygame.transform.scale(sprite, (x, y))
     return sprite, sprite_rect
 
 def change_sprite (sprite, new_image_path):

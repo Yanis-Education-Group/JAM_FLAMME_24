@@ -13,6 +13,8 @@ def startGame() -> None:
     stream.start_stream()
 
     cooking_meat, rect_cooking_meat = create_sprite("assets/diff_meat/raw_beef/8730aceb-86a9-4f1e-8f68-c200794d7a06.png", 200, 200);
+    cauldron, cauldron_rect = create_sprite("assets/cauldron.png", 200, 200)
+    olymp, olymp_rect = create_sprite("assets/olympic_rings.png", 100, 100)
 
     score = 0
     currentMeat = 0
@@ -26,6 +28,8 @@ def startGame() -> None:
         screen.blit(cooking_meat, (860, 200))
         screen.blit(scoreUI, (20, 20))
         screen.blit(timeUI, (1800, 20))
+        screen.blit(cauldron, (860, 555))
+        screen.blit(olymp, (910, 565))
         if stream.is_active():
             if (use_mic() >= 130):
                 currentMeat += (use_mic() / 50)
