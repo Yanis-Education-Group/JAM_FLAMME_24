@@ -7,10 +7,9 @@ def create_sprite(image_path, x, y):
     sprite = pygame.transform.scale(sprite, (200, 200))
     return sprite, sprite_rect
 
-def change_sprite (sprite, new_image_path, cooked):
-    if cooked:
-        sprite = pygame.image.load(new_image_path)
-        sprite = pygame.transform.scale(sprite, (200, 200))
+def change_sprite (sprite, new_image_path):
+    sprite = pygame.image.load(new_image_path)
+    sprite = pygame.transform.scale(sprite, (200, 200))
     return sprite
 
 # def place_meat():

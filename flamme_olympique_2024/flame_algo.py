@@ -2,11 +2,8 @@ import pygame
 import os
 import random
 
-SCREEN_WIDTH = pygame.display.Info().current_w
-SCREEN_HEIGHT = pygame.display.Info().current_h
-
 class FlameParticle:
-    def __init__(self, x = SCREEN_WIDTH // 2, y = SCREEN_HEIGHT // 2, r = 5, alpha_layer = 2, alpha_glow_diff = 2) -> None:
+    def __init__(self, x = 1920 // 2, y = 1080 // 2, r = 20000000000, alpha_layer = 2, alpha_glow_diff = 2) -> None:
         self.x = x
         self.y = y
         self.r = r
@@ -18,7 +15,7 @@ class FlameParticle:
         self.burn_rate = 0.1 * random.randint(1, 4)
 
     def update(self) -> None:
-        self.y -= 7 - self.r 
+        self.y -= 7 - self.r
         self.x += random.randint(-self.r, self.r)
         self.prev_r -= self.burn_rate
         self.r = int(self.prev_r)
@@ -46,7 +43,7 @@ class FlameParticle:
 
 
 class FlameObject:
-    def __init__(self, x=SCREEN_WIDTH // 2, y=SCREEN_HEIGHT // 2):
+    def __init__(self, x=1920 // 2, y=1080 // 2):
         self.x = x
         self.y = y
         self.flame_intensity = 2
