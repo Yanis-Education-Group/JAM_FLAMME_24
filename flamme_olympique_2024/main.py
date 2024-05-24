@@ -41,9 +41,11 @@ def startGame() -> None:
         if currentMeat >= 100:
             score += 1
             cooking_meat = change_sprite(cooking_meat, "assets/diff_meat/cooked_beef/5acf297e-aee1-43ff-ae02-2cda59aca16f.png")
-            while rect_cooking_meat.y >= 0:
-                rect_cooking_meat.y -= 5
-                screen.blit(cooking_meat, (860, 200))
+            x = 860
+            while x >= -250:
+                x -= 5
+                screen.blit(cooking_meat, (x, 200))
+                pygame.display.update()
             rect_cooking_meat.y = 200
             cooking_meat = change_sprite(cooking_meat, "assets/diff_meat/raw_beef/8730aceb-86a9-4f1e-8f68-c200794d7a06.png")
             currentMeat = 0
