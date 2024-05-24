@@ -57,9 +57,7 @@ def loadAssets():
 
 
 def startGame() -> None:
-
-    pygame.init()
-    screen = pygame.display.set_mode((1920, 1080), pygame.FULLSCREEN)
+    screen = pygame.display.set_mode((800, 600))
     score = 0
     currentMeat = 0
     timer = time.time()
