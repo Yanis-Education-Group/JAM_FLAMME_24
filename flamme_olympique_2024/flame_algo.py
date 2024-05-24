@@ -3,7 +3,7 @@ import os
 import random
 
 class FlameParticle:
-    def __init__(self, x = 1920 // 2, y = 1080 // 2, r = 20000000000, alpha_layer = 2, alpha_glow_diff = 2) -> None:
+    def __init__(self, x = 1920 // 2, y = 1080 // 2, r = 2, alpha_layer = 2, alpha_glow_diff = 10) -> None:
         self.x = x
         self.y = y
         self.r = r
