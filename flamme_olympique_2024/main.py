@@ -6,7 +6,10 @@ from meat_cooking import create_sprite, change_sprite
 def getCurrentDb():
     return 100
 
-def gameLoop(screen: pygame.Surface, score: int, currentMeat: int, start: float, scoreFont: pygame.font.Font, cooking_meat: pygame.Surface, rect_cooking_meat: pygame.Rect):
+def gameLoop(screen: pygame.Surface, start: float, scoreFont: pygame.font.Font, cooking_meat: pygame.Surface, rect_cooking_meat: pygame.Rect):
+
+    score = 0
+    currentMeat = 0
 
     screen.fill((0, 0, 0))
     pygame.draw.rect(screen, (125, 125, 125), pygame.Rect(30, 1000, 1860, 30))
@@ -23,17 +26,16 @@ def gameLoop(screen: pygame.Surface, score: int, currentMeat: int, start: float,
     pygame.draw.rect(screen, (0, 255, 0), pygame.Rect(30, 1000, (currentMeat / 100) * 1860, 30))
     if currentMeat >= 100:
         score += 1
-        change_sprite(cooking_meat, "assets/diff_meat/cooked_beef/5acf297e-aee1-43ff-ae02-2cda59aca16f.png")
+        cooking_meat = change_sprite(cooking_meat, "assets/diff_meat/cooked_beef/5acf297e-aee1-43ff-ae02-2cda59aca16f.png")
         while rect_cooking_meat.y <= 0:
             rect_cooking_meat.y -= 5
         rect_cooking_meat.y = 200
-        change_sprite(cooking_meat, "assets/diff_meat/raw_beef/8730aceb-86a9-4f1e-8f68-c200794d7a06.png")
+        cooking_meat = change_sprite(cooking_meat, "assets/diff_meat/raw_beef/8730aceb-86a9-4f1e-8f68-c200794d7a06.png")
         currentMeat = 0
     for event in pygame.event.get():
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_ESCAPE:
                 pygame.quit()
-    pygame.display.update()
 
 
 def endGameLoop(screen: pygame.Surface, score: int, gameOverFont: pygame.font.Font):
@@ -58,14 +60,13 @@ def loadAssets():
 
 def startGame() -> None:
     screen = pygame.display.set_mode((800, 600))
-    score = 0
-    currentMeat = 0
     timer = time.time()
 
     scoreFont, gameOverFont, cooking_meat, rect_cooking_meat = loadAssets() 
 
     while (time.time() - timer < 60):
-        gameLoop(screen, score, currentMeat, timer, scoreFont, cooking_meat, rect_cooking_meat)
+        score = gameLoop(screen, timer, scoreFont, cooking_meat, rect_cooking_meat)
+    pygame.display.update()
 
     endGameLoop(screen, score, gameOverFont)
     pygame.display.update()
